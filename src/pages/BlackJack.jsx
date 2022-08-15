@@ -1,5 +1,6 @@
 import React from "react";
 import { generateDeck, dealCards } from "../cmps/DeckFunctions";
+import Card from "../cmps/Card";
 
 class BlackJack extends React.Component {
 
@@ -24,16 +25,22 @@ class BlackJack extends React.Component {
     }
 
     render() {
+        const { dealer, player } = this.state;
         return (
             <div className="game">
                 <main className="game-container">
                     <h1>BlackJack</h1>
-                    <button onClick={() => { this.startNewGame() }}>New game</button>
                     <div className="dealer">
-                        {this.state.dealer.number}
+                        Dealer's Cards ({dealer.count})<br />
+                        {dealer.cards.map((card,i) =>{
+                            return <Card key={i} number={card.number} suit={card.suit}/>
+                        })}
                     </div>
                     <div className="player">
-                        <p>{this.state.player.number}</p>
+                        Your Cards  ({player.count})<br />
+                        {player.cards.map((card,i) =>{
+                            return <Card key={i} number={card.number} suit={card.suit}/>
+                        })}
                         {console.log(this.state)}
                     </div>
                 </main>
