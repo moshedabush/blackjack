@@ -1,5 +1,5 @@
 import React from "react";
-import { generateDeck, dealCards, getRandomCard, getCount } from "../cmps/DeckFunctions";
+import { generateDeck, dealCards, getRandomCard, getCount, getWinner, dealerDraw } from "../cmps/DeckFunctions";
 import Card from "../cmps/Card";
 
 class BlackJack extends React.Component {
@@ -8,10 +8,12 @@ class BlackJack extends React.Component {
         deck: [],
         dealer: null,
         player: null,
+        dealerWinCount: 0,
+        playerWinCount: 0,
         wallet: 1000,
         message: null,
         inputValue: '',
-        gameStatus: null,
+        gameOver: false,
     };
 
     componentWillMount = () => {
@@ -44,17 +46,72 @@ class BlackJack extends React.Component {
         if (!this.state.gameOver) {
             if (this.state.currentBet) {
                 const { randomCard, updatedDeck } = getRandomCard(this.state.deck);
-                const player = this.state.player;
+                const { player, dealer } = this.state;
                 player.cards.push(randomCard);
                 player.count = getCount(player.cards);
 
                 if (player.count > 21) {
-                    this.setState({ player, gameOver: true, message: 'BUST!' });
+                    this.setState({ player, dealerWinCount: this.state.dealerWinCount + 1, gameOver: true, message: 'BUST!' });
                 } else {
                     this.setState({ deck: updatedDeck, player });
                 }
             } else {
                 this.setState({ message: 'Please place bet.' });
+            }
+        } else {
+            this.setState({ message: 'Game over! Please start a new game.' });
+        }
+    }
+
+    stand() {
+        if (!this.state.gameOver) {
+            const randomCard = getRandomCard(this.state.deck);
+            let deck = randomCard.updatedDeck;
+            let { dealer, player } = this.state;
+            let { playerWinCount, dealerWinCount } = this.state;
+            dealer.cards.pop();
+            dealer.cards.push(randomCard.randomCard);
+            dealer.count = getCount(dealer.cards);
+            while (dealer.count < 17) {
+                const draw = dealerDraw(dealer, deck);
+                dealer = draw.dealer;
+                deck = draw.updatedDeck;
+            }
+            if (dealer.count > 21) {
+                this.setState({
+                    deck,
+                    dealer,
+                    wallet: this.state.wallet + this.state.currentBet * 2,
+                    gameOver: true,
+                    message: 'Dealer bust! You win!',
+                    playerWinCount: playerWinCount + 1
+                });
+            } else {
+                const winner = getWinner(dealer, player);
+                let wallet = this.state.wallet;
+                let message;
+
+                if (winner === 'dealer') {
+                    message = 'Dealer wins...';
+                } else if (winner === 'player') {
+                    wallet += this.state.currentBet * 2;
+                    message = 'You win!';
+                } else if (dealerWinCount >= playerWinCount) {
+                    message = 'Dealer wins...';
+                } else {
+                    wallet += this.state.currentBet * 2;
+                    message = 'You win!';
+                }
+                let name = '';
+                message === 'You win!' ? name = 'playerWinCount' : name = 'dealerWinCount';
+                this.setState({
+                    deck,
+                    dealer,
+                    wallet,
+                    gameOver: true,
+                    message,
+                    [name]: [this.state.name] + 1
+                });
             }
         } else {
             this.setState({ message: 'Game over! Please start a new game.' });
@@ -83,8 +140,9 @@ class BlackJack extends React.Component {
                                 <button onClick={() => { this.placeBet() }}>Place Bet</button>
                             </div>
                             : <div>This Round Bet ${currentBet}
-                            <br />
-                            <button onClick={() => {this.hit()}}>Hit</button>
+                                <br />
+                                <button onClick={() => { this.hit() }}>Hit</button>
+                                <button onClick={() => { this.stand() }}>Stand</button>
                             </div>
                     }
                     <div className="dealer">

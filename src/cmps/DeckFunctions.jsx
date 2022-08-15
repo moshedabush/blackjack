@@ -58,3 +58,20 @@ export function getCount(cards) {
         }
     }, 0);
 }
+
+export function getWinner(dealer, player) {
+    if (dealer.count > player.count) {
+        return 'dealer';
+    } else if (dealer.count < player.count) {
+        return 'player';
+    } else {
+        return 'push';
+    }
+}
+
+export function dealerDraw(dealer, deck) {
+    const { randomCard, updatedDeck } = getRandomCard(deck);
+    dealer.cards.push(randomCard);
+    dealer.count = getCount(dealer.cards);
+    return { dealer, updatedDeck };
+}
