@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from '../src/pages/HomePage.jsx';
-import  BlackJack  from '../src/pages/BlackJack.jsx';
+import BlackJack from '../src/pages/BlackJack.jsx';
 
 export class RootCmp extends React.Component {
   render() {
