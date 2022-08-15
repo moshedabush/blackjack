@@ -8,6 +8,7 @@ class BlackJack extends React.Component {
         deck: [],
         dealer: null,
         player: null,
+        wallet: 0,
     };
 
     componentWillMount = () => {
@@ -32,14 +33,14 @@ class BlackJack extends React.Component {
                     <h1>BlackJack</h1>
                     <div className="dealer">
                         Dealer's Cards ({dealer.count})<br />
-                        {dealer.cards.map((card,i) =>{
-                            return <Card key={i} number={card.number} suit={card.suit}/>
+                        {dealer.cards.map((card, i) => {
+                            return <Card key={i} number={card.number} suit={card.suit} />
                         })}
                     </div>
                     <div className="player">
                         Your Cards  ({player.count})<br />
-                        {player.cards.map((card,i) =>{
-                            return <Card key={i} number={card.number} suit={card.suit}/>
+                        {player.cards.map((card, i) => {
+                            return <Card key={i} number={card.number} suit={card.suit} />
                         })}
                         {console.log(this.state)}
                     </div>
