@@ -25,9 +25,15 @@ class BlackJack extends React.Component {
         const { updatedDeck, player, dealer } = dealCards(deck);
         this.setState({
             deck: updatedDeck,
-            player,
             dealer,
+            player,
+            message: null,
+            gameOver: false,
+            currentBet: 0,
         })
+        if (this.state.wallet === 0)
+            this.setState({ wallet: 1000, message: '1000$ added to your wallet good luck!' })
+
     }
 
     placeBet() {
@@ -144,6 +150,13 @@ class BlackJack extends React.Component {
                                 <button onClick={() => { this.hit() }}>Hit</button>
                                 <button onClick={() => { this.stand() }}>Stand</button>
                             </div>
+                    }
+                    {
+                        this.state.gameOver ?
+                            <div >
+                                <button onClick={() => { this.startNewGame() }}>Continue</button>
+                            </div>
+                            : null
                     }
                     <div className="dealer">
                         Dealer's Cards ({dealer.count})<br />
