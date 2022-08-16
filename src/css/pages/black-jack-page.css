@@ -1,9 +1,9 @@
 .game {
     margin: auto;
+    background: linear-gradient(0deg, #1D9A6Cff, #99D492 100%);
 }
 
 .game-container {
-    background-color: azure;
     text-align: center;
     padding: 0 15px;
     margin: auto;

@@ -1,4 +1,5 @@
 import React from "react";
+import AppHeader from '../cmps/AppHeader.jsx';
 import { generateDeck, dealCards, getRandomCard, getCount, getWinner, dealerDraw } from "../cmps/DeckFunctions";
 import Card from "../cmps/Card";
 
@@ -133,7 +134,8 @@ class BlackJack extends React.Component {
         const { dealer, player, currentBet, inputValue, message } = this.state;
         return (
             <div className="game">
-                <main className="game-container">
+                <main className="game-container flex align-center column">
+                <AppHeader />
                     <h1>BlackJack</h1>
                     <p>Wallet: ${this.state.wallet}</p>
                     <div className="message-container">{message}</div>
