@@ -1,4 +1,22 @@
-.home{
+.home {
     margin: 0;
-    background-color: #147F7D;
-  }
+    background-color: #0D967A;
+}
+
+.home .start-btn:hover {
+    color: #999;
+    background-color: #fffe08c2;
+}
+
+.home .start-btn{
+    font-weight: 600;
+    font-size: 2rem;
+    border-radius: 6px;
+    padding: 4px 25px;
+    line-height: 3rem;
+    color: #ffffff;
+    background-color: #0000006e;
+    margin: 5px;
+    position: relative;
+    bottom: 225px;
+}

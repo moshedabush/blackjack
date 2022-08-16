@@ -8,16 +8,15 @@ export default class HomePage extends React.Component {
     render() {
         return (
             <div className="home">
-                <main className="home-container">
+                <main className="home-container flex align-center column">
                     <HomeHeader />
                     <div className="hero-img">
                         <img src={Hero} alt="" />
                     </div>
                     <h1>Welcome to BlackJack!</h1>
-                    <Link to={"/blackjack"} state={this.state}>
-                        Let's Start
+                    <Link to={"/blackjack"} state={this.state} className="start-btn">
+                        Start
                     </Link>
-                    <br />
                     <Link to={"/about"}>
                         Need to know more about the game?
                     </Link>
