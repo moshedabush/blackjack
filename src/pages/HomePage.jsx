@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Hero from "../assets/img/homepage-hero.png";
 import HomeHeader from "../cmps/HomeHeader.jsx";
 
 export default class HomePage extends React.Component {
@@ -9,6 +10,9 @@ export default class HomePage extends React.Component {
             <div className="home">
                 <main className="home-container">
                     <HomeHeader />
+                    <div className="hero-img">
+                        <img src={Hero} alt="" />
+                    </div>
                     <h1>Welcome to BlackJack!</h1>
                     <Link to={"/blackjack"} state={this.state}>
                         Let's Start

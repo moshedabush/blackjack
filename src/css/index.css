@@ -1,0 +1,23 @@
+/* General: */
+
+@import url('setup/base.css');
+@import url('setup/helpers.css');
+
+/* Pages: */
+
+@import url('pages/home-page.css');
+@import url('pages/black-jack-page.css');
+@import url('pages/about-page.css');
+
+
+
+
+
+
+/* Mobile */
+
+@media (min-width: 740px) {
+}
+
+@media (min-width: 1000px) {
+}
