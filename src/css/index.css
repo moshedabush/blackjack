@@ -14,13 +14,3 @@
 @import url('cmps/loader.css');
 @import url('cmps/card.css');
 @import url('cmps/app-header.css');
-
-
-
-
-
-/* Mobile */
-
-@media (max-width: 550px) {}
-
-@media (min-width: 1000px) {}

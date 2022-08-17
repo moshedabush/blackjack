@@ -1,9 +1,9 @@
 import React from "react";
-import AppHeader from '../cmps/AppHeader.jsx';
 import { generateDeck, dealCards, getRandomCard, getCount, getWinner, dealerDraw } from "../cmps/DeckFunctions";
 import Card from "../cmps/Card";
-import Table from "../assets/img/black-jack-table.jpg";
+import BackGround from "../assets/img/black-jack-background.jpg";
 import Loader from '../cmps/Loader';
+import BetAudio from '../assets/audio/bet.mp3';
 
 class BlackJack extends React.Component {
 
@@ -46,6 +46,8 @@ class BlackJack extends React.Component {
         } else if (currentBet % 1 !== 0 || currentBet === 0) {
             this.setState({ message: 'Please bet whole numbers only.' });
         } else {
+            let betSound = new Audio(BetAudio);
+            betSound.play();
             const wallet = this.state.wallet - currentBet;
             this.setState({ wallet, inputValue: '', currentBet });
         }
@@ -55,7 +57,7 @@ class BlackJack extends React.Component {
         if (!this.state.gameOver) {
             if (this.state.currentBet) {
                 const { randomCard, updatedDeck } = getRandomCard(this.state.deck);
-                const { player, dealer } = this.state;
+                const { player } = this.state;
                 player.cards.push(randomCard);
                 player.count = getCount(player.cards);
 
@@ -137,9 +139,8 @@ class BlackJack extends React.Component {
         const { dealer, player, currentBet, inputValue, message, gameOver, wallet, deck } = this.state;
         if (!deck) return <Loader />
         return (
-            <div className="game" style={{ backgroundImage: `url(${Table})` }}>
+            <div className="game" style={{ backgroundImage: `url(${BackGround})` }}>
                 <main className="game-container flex align-center column">
-                    <AppHeader />
                     <h1>BlackJack</h1>
                     <p className="wallet">Wallet: ${wallet}</p>
                     <div className="game-buttons">

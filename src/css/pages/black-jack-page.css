@@ -1,7 +1,7 @@
 .game {
     margin: 0;
     height: 100vh;
-    background-size: contain;
+    background-size: cover;
 }
 
 .game-container {
@@ -17,11 +17,15 @@
 }
 
 .game-container h1 {
-    margin-bottom: 10px;
+    margin: 15px;
 }
 
 .game-container h2 {
     margin: 10px;
+    border-radius: 6px;
+    padding: 1px 22px;
+    line-height: 2rem;
+    background-color: #cdcdcd80;
 }
 
 .input-bet {
@@ -71,17 +75,14 @@ input,
     .game button,
     input,
     .message-container,
-    .wallet {
+    .wallet,
+    h2 {
         font-size: 1.2rem;
         line-height: 2rem;
     }
 
     .wallet {
         margin: 5px;
-    }
-
-    .game h2 {
-        font-size: 1.2rem;
     }
 
     .player,
@@ -91,14 +92,24 @@ input,
     }
 }
 
-@media (max-width: 850px) {
-    .game {
-        background-size: unset;
+@media (max-width:320px) {
+
+    .game button,
+    input,
+    .message-container,
+    .wallet,
+    h2 {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+    .player,
+    .dealer {
+        gap: 1vh;
     }
 }
 
-@media (min-width: 1060px) {
+@media (max-width: 850px) {
     .game {
-        background-size: cover;
+        background-size: unset;
     }
 }

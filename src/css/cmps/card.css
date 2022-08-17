@@ -42,3 +42,16 @@
         bottom: 5vh;
     }
 }
+
+@media (max-width:320px) {
+
+    .card,
+    .card-red {
+        height: 100px;
+        width: 68px;
+    }
+
+    .card-number {
+        bottom: 4vh;
+    }
+}
