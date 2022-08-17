@@ -1,10 +1,97 @@
 .game {
-    margin: auto;
-    background: linear-gradient(0deg, #1D9A6Cff, #99D492 100%);
+    margin: 0;
+    height: 100vh;
+    background-size: contain;
 }
 
 .game-container {
+    color: white;
     text-align: center;
     padding: 0 15px;
-    margin: auto;
+    margin: 0;
+}
+
+.wallet {
+    position: relative;
+}
+
+.game-container h1 {
+    margin-bottom: 10px;
+}
+
+.wallet {
+    margin: 20px;
+}
+
+.input-bet {
+    text-align-last: center;
+    margin: 10px;
+}
+
+.game button,
+input,
+.message-container,.wallet {
+    margin-block-start: 5px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border-radius: 6px;
+    padding: 1px 22px;
+    line-height: 3rem;
+}
+
+.game button,
+.message-container {
+    background-color: #d5b791;
+    color: #ffffff;
+}
+
+.game button:hover {
+    color: #a83b3b;
+    background-color: #d5b791;
+}
+
+.game-buttons,
+.message-container {
+    margin: 15px;
+}
+
+.bet-message {
+    display: grid;
+}
+
+
+.card,
+.card-red {
+    height: 150px;
+    width: 100px;
+    background-color: #ededed;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    color: rgba(13, 12, 12, 0.888);
+}
+
+.card-red {
+    color: red;
+}
+
+.player,
+.dealer {
+    gap: 5vh;
+}
+
+
+@media (max-width: 850px) {
+    .game {
+        background-size: unset;
+    }
+}
+@media (min-width: 1060px) {
+    .game {
+        background-size: cover;
+    }
 }

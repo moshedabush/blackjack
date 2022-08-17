@@ -2,6 +2,7 @@ import React from "react";
 import AppHeader from '../cmps/AppHeader.jsx';
 import { generateDeck, dealCards, getRandomCard, getCount, getWinner, dealerDraw } from "../cmps/DeckFunctions";
 import Card from "../cmps/Card";
+import Table from "../assets/img/black-jack-table.jpg";
 
 class BlackJack extends React.Component {
 
@@ -127,52 +128,51 @@ class BlackJack extends React.Component {
 
     inputChange(e) {
         const inputValue = +e.target.value;
-        if (!isNaN(inputValue)) this.setState({ inputValue });
+        const firstDigitStr = String(inputValue)[0];
+        if ((firstDigitStr != 0)) this.setState({ inputValue });
     }
 
     render() {
-        const { dealer, player, currentBet, inputValue, message } = this.state;
+        const { dealer, player, currentBet, inputValue, message, gameOver, wallet } = this.state;
         return (
-            <div className="game">
+            <div className="game" style={{ backgroundImage: `url(${Table})` }}>
                 <main className="game-container flex align-center column">
-                <AppHeader />
+                    <AppHeader />
                     <h1>BlackJack</h1>
-                    <p>Wallet: ${this.state.wallet}</p>
-                    <div className="message-container">{message}</div>
+                    <p className="wallet">Wallet: ${wallet}</p>
+                    <div className="game-buttons">
                     {
-                        !currentBet ?
-                            <div className="input-bet">
-                                <form>
-                                    <input type="text" placeholder="Enter Your Bet" value={inputValue} onChange={this.inputChange.bind(this)} />
-                                </form>
-                                <button onClick={() => { this.placeBet() }}>Place Bet</button>
-                            </div>
-                            : <div>This Round Bet ${currentBet}
-                                <br />
-                                <button onClick={() => { this.hit() }}>Hit</button>
-                                <button onClick={() => { this.stand() }}>Stand</button>
-                            </div>
-                    }
-                    {
-                        this.state.gameOver ?
-                            <div >
+                        gameOver ?
+                        <div >
                                 <button onClick={() => { this.startNewGame() }}>Continue</button>
                             </div>
-                            : null
+                            : !currentBet ?
+                            <div className="input-bet">
+                                    <form>
+                                        <input type="number" placeholder="Enter Your Bet" value={inputValue} onChange={this.inputChange.bind(this)} />
+                                    </form>
+                                    <button onClick={() => { this.placeBet() }}>Place Bet</button>
+                                </div>
+                                : <div className="bet-message">This Round Bet ${currentBet}
+                                    <button onClick={() => { this.hit() }}>Hit</button>
+                                    <button onClick={() => { this.stand() }}>Stand</button>
+                                </div>
                     }
-                    <div className="dealer">
-                        Dealer's Cards ({dealer.count})<br />
+                    </div>
+                    <h2>Dealer's Cards ({dealer.count})</h2>
+                    <div className="dealer flex">
                         {dealer.cards.map((card, i) => {
                             return <Card key={i} number={card.number} suit={card.suit} />
                         })}
                     </div>
-                    <div className="player">
-                        Your Cards  ({player.count})<br />
+                    <h2>Your Cards  ({player.count})</h2>
+                    <div className="player flex">
                         {player.cards.map((card, i) => {
                             return <Card key={i} number={card.number} suit={card.suit} />
                         })}
                         {console.log(this.state)}
                     </div>
+                    <div className="message-container">{message}</div>
                 </main>
             </div>
         );

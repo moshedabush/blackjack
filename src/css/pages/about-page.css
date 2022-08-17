@@ -1,5 +1,7 @@
 .about {
     margin: 0;
+    height: 100vh;
+    overflow-y: hidden;
     background: linear-gradient(0deg, #1D9A6Cff, #99D492 100%);
 }
 
@@ -27,6 +29,8 @@
 }
 
 .about .start-btn {
+    position: absolute;
+    bottom: 10vh;
     font-weight: 300;
     font-size: 2rem;
     border-radius: 6px;
@@ -46,7 +50,8 @@
     .about .start-btn {
         font-size: 20px;
     }
-    .about-info p{
+
+    .about-info p {
         font-size: 12px;
     }
 }

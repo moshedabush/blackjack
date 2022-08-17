@@ -1,5 +1,6 @@
 .home {
     margin: 0;
+    height: 100vh;
     background: linear-gradient(0deg, #1D9A6Cff, #99D492 100%);
 }
 
@@ -7,10 +8,6 @@
     padding: 0 15px;
 }
 
-.home .start-btn:hover {
-    color: #131111;
-    background-color: #fffe08e8;
-}
 
 .home .start-btn {
     font-weight: 600;
@@ -23,6 +20,11 @@
     margin: 5px;
     position: relative;
     bottom: 190px;
+}
+
+.home .start-btn:hover {
+    color: #131111;
+    background-color: #fffe08e8;
 }
 
 .home h1 {
