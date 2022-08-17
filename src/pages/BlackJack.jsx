@@ -36,7 +36,6 @@ class BlackJack extends React.Component {
         })
         if (this.state.wallet === 0)
             this.setState({ wallet: 1000, message: '1000$ added to your wallet good luck!' })
-
     }
 
     placeBet() {
@@ -101,7 +100,6 @@ class BlackJack extends React.Component {
                 const winner = getWinner(dealer, player);
                 let wallet = this.state.wallet;
                 let message;
-
                 if (winner === 'dealer') {
                     message = 'Dealer wins...';
                 } else if (winner === 'player') {

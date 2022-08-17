@@ -35,7 +35,6 @@
 
 .game button,
 input,
-.message-container,
 .wallet {
     margin-block-start: 5px;
     font-weight: 600;
@@ -45,10 +44,19 @@ input,
     line-height: 3rem;
 }
 
-.game button,
-.message-container {
+.game button{
     background-color: #d5b791;
     color: #ffffff;
+}
+.message-container{
+    margin-block-start: 5px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border-radius: 6px;
+    line-height: 3rem;
+    padding: 1px 50px;
+    background-color: #ffffffde;
+    color: #ff0000c4;
 }
 
 .game button:hover {
