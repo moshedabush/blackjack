@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Hero from "../assets/img/homepage-hero.png";
 import AppHeader from '../cmps/AppHeader.jsx';
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
 
     render() {
         return (
@@ -26,4 +26,5 @@ export default class HomePage extends React.Component {
     }
 }
 
+export default HomePage;
 

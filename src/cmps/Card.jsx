@@ -5,7 +5,8 @@ const Card = ({ number, suit }) => {
     if (!number) return null;
     return (
         <div className={color}>
-            {number}{suit}
+            <div className="card-number">{number}</div>
+            <div className="card-suit">{suit}</div>
         </div>
     )
 }

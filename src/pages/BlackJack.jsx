@@ -3,6 +3,7 @@ import AppHeader from '../cmps/AppHeader.jsx';
 import { generateDeck, dealCards, getRandomCard, getCount, getWinner, dealerDraw } from "../cmps/DeckFunctions";
 import Card from "../cmps/Card";
 import Table from "../assets/img/black-jack-table.jpg";
+import Loader from '../cmps/Loader';
 
 class BlackJack extends React.Component {
 
@@ -110,15 +111,15 @@ class BlackJack extends React.Component {
                     wallet += this.state.currentBet * 2;
                     message = 'You win!';
                 }
-                let name = '';
-                message === 'You win!' ? name = 'playerWinCount' : name = 'dealerWinCount';
+                let whoWonCount = '';
+                message === 'You win!' ? whoWonCount = 'playerWinCount' : whoWonCount = 'dealerWinCount';
                 this.setState({
                     deck,
                     dealer,
                     wallet,
                     gameOver: true,
                     message,
-                    [name]: [this.state.name] + 1
+                    [whoWonCount]: [this.state.whoWonCount] + 1
                 });
             }
         } else {
@@ -133,7 +134,8 @@ class BlackJack extends React.Component {
     }
 
     render() {
-        const { dealer, player, currentBet, inputValue, message, gameOver, wallet } = this.state;
+        const { dealer, player, currentBet, inputValue, message, gameOver, wallet, deck } = this.state;
+        if (!deck) return <Loader />
         return (
             <div className="game" style={{ backgroundImage: `url(${Table})` }}>
                 <main className="game-container flex align-center column">
@@ -141,23 +143,23 @@ class BlackJack extends React.Component {
                     <h1>BlackJack</h1>
                     <p className="wallet">Wallet: ${wallet}</p>
                     <div className="game-buttons">
-                    {
-                        gameOver ?
-                        <div >
-                                <button onClick={() => { this.startNewGame() }}>Continue</button>
-                            </div>
-                            : !currentBet ?
-                            <div className="input-bet">
-                                    <form>
-                                        <input type="number" placeholder="Enter Your Bet" value={inputValue} onChange={this.inputChange.bind(this)} />
-                                    </form>
-                                    <button onClick={() => { this.placeBet() }}>Place Bet</button>
+                        {
+                            gameOver ?
+                                <div >
+                                    <button onClick={() => { this.startNewGame() }}>Continue</button>
                                 </div>
-                                : <div className="bet-message">This Round Bet ${currentBet}
-                                    <button onClick={() => { this.hit() }}>Hit</button>
-                                    <button onClick={() => { this.stand() }}>Stand</button>
-                                </div>
-                    }
+                                : !currentBet ?
+                                    <div className="input-bet">
+                                        <form>
+                                            <input type="number" placeholder="Enter Your Bet" value={inputValue} onChange={this.inputChange.bind(this)} />
+                                        </form>
+                                        <button onClick={() => { this.placeBet() }}>Place Bet</button>
+                                    </div>
+                                    : <div className="bet-message">This Round Bet ${currentBet}
+                                        <button onClick={() => { this.hit() }}>Hit</button>
+                                        <button onClick={() => { this.stand() }}>Stand</button>
+                                    </div>
+                        }
                     </div>
                     <h2>Dealer's Cards ({dealer.count})</h2>
                     <div className="dealer flex">
@@ -170,7 +172,6 @@ class BlackJack extends React.Component {
                         {player.cards.map((card, i) => {
                             return <Card key={i} number={card.number} suit={card.suit} />
                         })}
-                        {console.log(this.state)}
                     </div>
                     <div className="message-container">{message}</div>
                 </main>

@@ -1,0 +1,44 @@
+.card,
+.card-red {
+    height: 150px;
+    width: 100px;
+    background-color: #ededed;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-number {
+    position: relative;
+    bottom: 6vh;
+    right: 3vh;
+    font-size: 1.5rem;
+}
+
+.card-suit {
+    position: fixed;
+    font-size: 3rem;
+}
+
+.card {
+    color: rgba(13, 12, 12, 0.888);
+}
+
+.card-red {
+    color: red;
+}
+
+
+@media (max-width: 700px) {
+
+    .card,
+    .card-red {
+        height: 120px;
+        width: 80px;
+    }
+
+    .card-number {
+        bottom: 5vh;
+    }
+}

@@ -13,14 +13,15 @@
 
 .wallet {
     position: relative;
+    margin: 10px;
 }
 
 .game-container h1 {
     margin-bottom: 10px;
 }
 
-.wallet {
-    margin: 20px;
+.game-container h2 {
+    margin: 10px;
 }
 
 .input-bet {
@@ -30,7 +31,8 @@
 
 .game button,
 input,
-.message-container,.wallet {
+.message-container,
+.wallet {
     margin-block-start: 5px;
     font-weight: 600;
     font-size: 1.5rem;
@@ -59,37 +61,42 @@ input,
     display: grid;
 }
 
-
-.card,
-.card-red {
-    height: 150px;
-    width: 100px;
-    background-color: #ededed;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.card {
-    color: rgba(13, 12, 12, 0.888);
-}
-
-.card-red {
-    color: red;
-}
-
 .player,
 .dealer {
     gap: 5vh;
 }
 
+@media (max-width: 700px) {
+
+    .game button,
+    input,
+    .message-container,
+    .wallet {
+        font-size: 1.2rem;
+        line-height: 2rem;
+    }
+
+    .wallet {
+        margin: 5px;
+    }
+
+    .game h2 {
+        font-size: 1.2rem;
+    }
+
+    .player,
+    .dealer {
+        gap: 1.5vh;
+        flex-wrap: wrap;
+    }
+}
 
 @media (max-width: 850px) {
     .game {
         background-size: unset;
     }
 }
+
 @media (min-width: 1060px) {
     .game {
         background-size: cover;

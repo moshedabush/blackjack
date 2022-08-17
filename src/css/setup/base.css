@@ -29,9 +29,3 @@ button {
 i {
     font-style: normal;
 }
-
-.app-header img{
-    height: auto;
-    width: 30px;
-    margin-block-start: 10px;
-}

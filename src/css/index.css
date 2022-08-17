@@ -9,6 +9,11 @@
 @import url('pages/black-jack-page.css');
 @import url('pages/about-page.css');
 
+/* Cmps: */
+
+@import url('cmps/loader.css');
+@import url('cmps/card.css');
+@import url('cmps/app-header.css');
 
 
 
@@ -16,12 +21,6 @@
 
 /* Mobile */
 
-@media (max-width: 550px) {
-    h1 {
-        font-size: 20px;
-    }
-}
+@media (max-width: 550px) {}
 
-@media (min-width: 1000px) {
-
-}
+@media (min-width: 1000px) {}
